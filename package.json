@@ -5,14 +5,24 @@
   "main": "index.js",
   "scripts": {
     "dist": "tsup src",
-    "start:dev": "tsx src/server.ts"
+    "start:dev": "tsx src/server.ts node -env-file=.env",
+    "start:watch": "tsx watch src/server.ts node -env-file=.env",
+    "start:dist": "npm run dist && node dist/server.js -env-file=.env"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/btoa": "^1.2.5",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.7",
+    "@types/node-fetch": "^2.6.11",
     "tsup": "^8.0.2",
     "tsx": "^4.7.3",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "btoa": "^1.2.1",
+    "express": "^4.19.2"
   }
 }
