@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",  
   "scripts": {
     "dist": "tsup src",
     "start:dev": "tsx src/server.ts node -env-file=.env",
