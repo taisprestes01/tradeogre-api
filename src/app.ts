@@ -1,13 +1,14 @@
 import express from 'express';
-import  router  from './routes';
-function createApp() {
+import router from './routes';
+
+const app = createApp()
+export function createApp() {
     const app = express();
  
     app.use(express.json());
 
-    app.get('/api', router );
-
+    app.use(router);
+   
     return app;
 }
-
 export default createApp;

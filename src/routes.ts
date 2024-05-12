@@ -1,9 +1,10 @@
 
 import { Router } from 'express';
-import { Request, Response } from 'express';
-import { balances } from './controllers/balance';
+ 
+import { getbalances } from './controllers/balance';
+
 const router = Router();
 
-router.get('/balances', balances);
+router.get('/getbalances', getbalances);
 
 export default router;
