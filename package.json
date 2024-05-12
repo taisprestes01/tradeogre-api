@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",  
+  "type": "module",
   "scripts": {
     "dist": "tsup src",
     "start:dev": "tsx src/server.ts node -env-file=.env",
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "btoa": "^1.2.1",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2"
   }
 }
