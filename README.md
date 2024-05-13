@@ -1,5 +1,4 @@
-<details>
-  <summary>Versão em Português 🇧🇷</summary>
+
   <h1 align="center">
     <br>
     <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://github.com/taisprestes01/tradeogre-api/assets/108246691/dec0b4a0-1225-491b-8859-dc0f052b388c" alt="Markdownify" width="300"></a>
@@ -84,4 +83,3 @@
   <h2>Support</h2>
   <a href="https://www.buymeacoffee.com/taisprestek" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/black_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
-</details>
