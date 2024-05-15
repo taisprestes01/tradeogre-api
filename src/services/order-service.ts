@@ -94,3 +94,33 @@ export const cancelOrderService = async (req: Request, res: Response) => {
     }
   };
   
+export const sellOrderService = async (req: Request, res: Response) => {
+  const market  = req.params.market  || '';
+  const quantity   = req.params.quantity   || '';
+  const price  = req.params.price  || '';
+  const url = `${baseUrl}/order/sell`;
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': `Basic ${Buffer.from(`${apiKeyPublic}:${apiKeyPrivate}`).toString('base64')}`
+    },
+    body: querystring.stringify({ market, quantity, price})
+  };
+
+  try {
+    const fetch = await import('node-fetch');
+    const response = await fetch.default(url, options);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const responseData = await response.json();
+    res.json(responseData);
+  } catch (error: any) {
+    if (error instanceof Error) {
+      res.status(500).json({ error: error.message });
+    } else {
+      res.status(500).json({ error: 'Unknown error occurred.' });
+    }
+  }
+};
