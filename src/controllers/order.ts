@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getOrderService, getOrdersService, cancelOrderService, sellOrderService } from '../services/order-service';
+import { getOrderService, getOrdersService, cancelOrderService, sellOrderService, buyOrderService } from '../services/order-service';
 
 export const getOrder = async (req: Request, res: Response) => {
   try {
@@ -38,5 +38,15 @@ export const sellOrder = async (req: Request, res: Response) => {
   } catch (error) {
     console.error(error);
     res.status(500).send('An error occurred while fetching the sellOrder.');
+  }
+}
+
+export const buyOrder = async (req: Request, res: Response) => {
+  try {
+    const data = await buyOrderService(req, res);
+    res.status(200).json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('An error occurred while fetching the buyOrder.');
   }
 }
