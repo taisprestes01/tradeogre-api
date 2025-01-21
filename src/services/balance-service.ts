@@ -6,17 +6,27 @@ const apiKeyPublic = process.env.TRADEOGRE_API_KEY_PUBLIC || '';
 const apiKeyPrivate = process.env.TRADEOGRE_API_KEY_PRIVATE || '';
 const baseUrl = process.env.BASE_URL || '';
 
-export const getBalancesService = async (req: Request, res: Response) => {
-  const url = `${baseUrl}/account/balances`;
-  const options = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': `Basic ${Buffer.from(`${apiKeyPublic}:${apiKeyPrivate}`).toString('base64')}`
-    },
-  };
+// Utility function to check API credentials
+const validateApiKeys = () => {
+  if (!apiKeyPublic || !apiKeyPrivate) {
+    throw new Error('Invalid API credentials: Public or Private key is missing.');
+  }
+};
 
+export const getBalancesService = async (req: Request, res: Response) => {
   try {
+    // Validate API credentials
+    validateApiKeys();
+
+    const url = `${baseUrl}/account/balances`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': `Basic ${Buffer.from(`${apiKeyPublic}:${apiKeyPrivate}`).toString('base64')}`,
+      },
+    };
+
     const fetch = await import('node-fetch');
     const response = await fetch.default(url, options);
     if (!response.ok) {
@@ -34,18 +44,21 @@ export const getBalancesService = async (req: Request, res: Response) => {
 };
 
 export const getBalanceService = async (req: Request, res: Response) => {
-  const currency = req.params.currency || '';
-  const url = `${baseUrl}/account/balance`;
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': `Basic ${Buffer.from(`${apiKeyPublic}:${apiKeyPrivate}`).toString('base64')}`
-    },
-    body: querystring.stringify({ currency })
-  };
-
   try {
+    // Validate API credentials
+    validateApiKeys();
+
+    const currency = req.params.currency || '';
+    const url = `${baseUrl}/account/balance`;
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': `Basic ${Buffer.from(`${apiKeyPublic}:${apiKeyPrivate}`).toString('base64')}`,
+      },
+      body: querystring.stringify({ currency }),
+    };
+
     const fetch = await import('node-fetch');
     const response = await fetch.default(url, options);
     if (!response.ok) {
